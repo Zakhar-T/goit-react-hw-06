@@ -7,8 +7,9 @@ export default function SearchBox() {
   const [query, setQuery] = useState('');
   const dispatch = useDispatch();
 
-  function handleFilter() {
-    dispatch(filter(query));
+  function handleFilter(name) {
+    setQuery(name);
+    dispatch(filter(name));
   }
 
   return (
@@ -18,10 +19,7 @@ export default function SearchBox() {
         type="text"
         name="searchField"
         value={query}
-        onChange={(evt) => {
-          setQuery(evt.target.value.toLowerCase());
-          handleFilter();
-        }}
+        onChange={(evt) => handleFilter(evt.target.value.toLowerCase())}
       />
     </div>
   );

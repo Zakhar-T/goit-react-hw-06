@@ -4,11 +4,16 @@ import styles from './ContactList.module.css';
 
 export default function ContactList() {
   const contacts = useSelector((state) => state.contacts.items);
+  const filter = useSelector((state) => state.filters.name);
+
+  const filteredContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filter),
+  );
 
   if (contacts.length > 0)
     return (
       <ul className={styles.contactList}>
-        {contacts.map((contact) => (
+        {filteredContacts.map((contact) => (
           <Contact
             key={contact.id}
             name={contact.name}
