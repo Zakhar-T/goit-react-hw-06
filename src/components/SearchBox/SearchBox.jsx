@@ -1,15 +1,13 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './SearchBox.module.css';
-import { filter } from '../../redux/filtersSlice';
-import { useState } from 'react';
+import { changeFilter } from '../../redux/filtersSlice';
 
 export default function SearchBox() {
-  const [query, setQuery] = useState('');
+  const filter = useSelector((state) => state.filters.name);
   const dispatch = useDispatch();
 
   function handleFilter(name) {
-    setQuery(name);
-    dispatch(filter(name));
+    dispatch(changeFilter(name));
   }
 
   return (
@@ -18,7 +16,7 @@ export default function SearchBox() {
       <input
         type="text"
         name="searchField"
-        value={query}
+        value={filter}
         onChange={(evt) => handleFilter(evt.target.value.toLowerCase())}
       />
     </div>

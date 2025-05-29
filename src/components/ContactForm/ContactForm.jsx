@@ -3,7 +3,7 @@ import { Form, Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import styles from './ContactForm.module.css';
 import { useDispatch } from 'react-redux';
-import { add } from '../../redux/contactsSlice';
+import { addContact } from '../../redux/contactsSlice';
 import { nanoid } from 'nanoid';
 
 export default function ContactForm() {
@@ -12,7 +12,7 @@ export default function ContactForm() {
   const dispatch = useDispatch();
 
   function handleAdd(id, name, number, actions) {
-    dispatch(add({ id: id, name: name, number: number }));
+    dispatch(addContact({ id: id, name: name, number: number }));
     actions.resetForm();
   }
 
